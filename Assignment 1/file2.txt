@@ -1,0 +1,6 @@
+Name,Address,Salary
+Sian,Uttara,25
+Naz,Agargaon,46
+Mirza,Mohammodpur,35
+Labib,Uttara,12
+Rambo,Uttara,78

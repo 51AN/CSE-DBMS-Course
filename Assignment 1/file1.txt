@@ -1,0 +1,6 @@
+Name,Address,BG
+Sian,Uttara,O+
+Naz,Agargaon,B+
+Mirza,Mohammodpur,A+
+Labib,Uttara,B+
+Rambo,Uttara,AB+
