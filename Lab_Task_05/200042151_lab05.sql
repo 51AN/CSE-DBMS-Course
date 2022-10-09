@@ -83,8 +83,6 @@ SELECT * FROM s200042151.instructor;
 SELECT * FROM s200042151.teaches; 
 
 
-
-conn Dihan/d1234
 conn Dihan/d1234
 SELECT * FROM s200042151.student;
 SELECT * FROM s200042151.course;
@@ -117,7 +115,8 @@ SELECT * FROM s200042151.instructor;
 --doesn't show--
 SELECT * FROM s200042151.teaches;
 
-UPDATE s200042151.department SET budget = 12000
+UPDATE s200042151.department 
+SET budget = 12000
 WHERE dept_name = 'History';
 
 SELECT * FROM s200042151.department;
