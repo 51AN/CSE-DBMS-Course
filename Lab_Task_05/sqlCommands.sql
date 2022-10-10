@@ -324,7 +324,7 @@ drop role dept_head;
 create role dept_head;
 
 GRANT course_teacher to dept_head;
---GRANT SELECT ON s200042151.instructor to dept_head;
+GRANT SELECT ON s200042151.instructor to dept_head;
 GRANT INSERT ON s200042151.instructor to dept_head;
 
 --d
@@ -370,7 +370,10 @@ SELECT * FROM s200042151.course;
 --will not show--
 SELECT * FROM s200042151.instructor; 
 --will not show--
-SELECT * FROM s200042151.teaches; 
+SELECT * FROM s200042151.teaches;
+--will not work--
+INSERT INTO s200042151.advisor values ('10102', 'ARMK', 'Comp. Sci.', '125000');
+
 
 
 
@@ -386,6 +389,8 @@ SELECT * FROM s200042151.teaches;
 SELECT * FROM s200042151.instructor; 
 --will not show--
 SELECT * FROM s200042151.teaches; 
+--will not work--
+INSERT INTO s200042151.student values ('10102', 'Sian', 'Comp. Sci.', '45000');
 
 
 conn ARMK/a1234
@@ -394,6 +399,9 @@ SELECT * FROM s200042151.course;
 SELECT * FROM s200042151.instructor; 
 --will not show--
 SELECT * FROM s200042151.teaches; 
+--will not work--
+INSERT INTO s200042151.student values ('10102', 'Sian', 'Comp. Sci.', '45000');
+
 
 INSERT INTO s200042151.instructor values ('10102', 'Sian', 'Comp. Sci.', '45000');
 --add new instructor--
