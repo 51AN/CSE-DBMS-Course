@@ -34,7 +34,7 @@ drop role dept_head;
 create role dept_head;
 
 GRANT course_teacher to dept_head;
-GRANT SELECT ON s200042151.instructor to dept_head;
+--GRANT SELECT ON s200042151.instructor to dept_head;
 GRANT INSERT ON s200042151.instructor to dept_head;
 
 --d
