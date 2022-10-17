@@ -25,6 +25,7 @@ create table etypes(
     base_salary NUMBER,
     h_allowance NUMBER
 
+    constraint pk_type primary key (type)
 
 )
 
