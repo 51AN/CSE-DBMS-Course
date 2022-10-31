@@ -1,0 +1,17 @@
+
+-- Declare function
+CREATE OR REPLACE
+FUNCTION COMPOUND_INTEREST (PA NUMBER , AIR NUMBER , TF NUMBER )
+RETURN NUMBER
+IS
+CI NUMBER ;
+BEGIN
+CI := PA * ((1 + (AIR / 100)) ** TF) - PA;
+RETURN CI;
+END ;
+/
+-- Call it from an anonymous block
+BEGIN
+DBMS_OUTPUT . PUT_LINE ( COMPOUND_INTEREST (10000 , 5, 5));
+END ;
+/
