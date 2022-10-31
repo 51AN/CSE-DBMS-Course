@@ -18,8 +18,8 @@ END ;
 DECLARE
     NAME VARCHAR2 (20);
 BEGIN
-    NAME := '& name ';
-    DBMS_OUTPUT . PUT_LINE ( ' My name is ' || NAME );
+    NAME := '&name';
+    DBMS_OUTPUT . PUT_LINE ( ' The length of my name is ' || LENGTH(NAME) );
 END ;
 /
 
@@ -40,7 +40,57 @@ END;
 DECLARE
     D DATE := SYSDATE ;
 BEGIN
-    DBMS_OUTPUT . PUT_LINE ( TO_CHAR ( D, 'DD -MON -YY HH24 :MI:SS '));
+    DBMS_OUTPUT . PUT_LINE ( TO_CHAR ( D, 'DD-MON-YY HH24:MI:SS '));
 END ;
 /
 
+--e--
+--without case
+DECLARE
+    NUM NUMBER(5);
+BEGIN 
+    NUM := '& number';
+    IF MOD(NUM,2) = 1 THEN
+        DBMS_OUTPUT.PUT_LINE('Number is ODD');
+    ELSE
+        DBMS_OUTPUT . PUT_LINE ( 'Number is EVEN');
+    END IF;
+END;
+/
+
+--with case
+DECLARE
+    NUM NUMBER(5);
+BEGIN 
+    NUM := '& number';
+    CASE MOD(NUM,2)
+        WHEN 1 THEN
+            DBMS_OUTPUT.PUT_LINE('Number is ODD');
+        WHEN 0 THEN
+            DBMS_OUTPUT . PUT_LINE ( 'Number is EVEN');
+        ELSE
+            DBMS_OUTPUT . PUT_LINE ( 'Error!');
+    END CASE;
+END;
+/
+--f--
+
+CREATE OR REPLACE
+PROCEDURE FIND_PRIME ( NUM IN NUMBER , VERDICT OUT VARCHAR2 )
+AS
+BEGIN
+    
+
+END;
+/
+
+DECLARE
+    NUM NUMBER(5);
+    VERIFY VARCHAR2(20);
+BEGIN 
+    NUM := '& number';
+    FIND_PRIME(NUM,VERIFY);
+    DBMS_OUTPUT . PUT_LINE (VERIFY);
+
+END;
+/
