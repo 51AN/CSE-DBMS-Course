@@ -142,30 +142,105 @@ BEGIN
 END;
 /
 
-
 --b--
-
-CREATE OR REPLACE
-PROCEDURE CustomerStatus(CustomerName IN VARCHAR2)
+create or replace
+PROCEDURE customer_status(name in varchar2)
 AS
-    NET_BALANCE number;
-    NET_LOAN number;
+balance number;
+loan_ammount number;
 BEGIN
-    SELECT sum(account.balance) INTO NET_BALANCE FROM account,depositor WHERE depositor.customer_name=CustomerName and depositor.account_number=account.account_number;
-    SELECT sum(loan.amount) INTO NET_LOAN FROM borrower,loan WHERE borrower.customer_name=CustomerName and borrower.loan_number=loan.loan_number;
-    IF((NET_BALANCE)<=(NET_LOAN)) THEN
-        DBMS_OUTPUT.PUT_LINE('Green Zone');
-    ELSE
+    SELECT MAX(account.balance) INTO balance 
+    FROM depositor, account
+    WHERE depositor.customer_name = name and depositor.account_number = account.account_number;
+
+    SELECT MAX(loan.amount) INTO loan_ammount 
+    FROM borrower, loan 
+    WHERE borrower.customer_name = name and borrower.loan_number = loan.loan_number;
+
+    IF((balance) => (loan_ammount)) THEN
         DBMS_OUTPUT.PUT_LINE('Red Zone');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Green Zone');
     END IF;
+END;  
+/
+
+DECLARE
+    name VARCHAR2(15);
+BEGIN
+    name := '& Customer_Name';
+    customer_status(name);
+END;
+/
+
+
+--c--
+
+create or replace
+FUNCTION customer_tax(name VARCHAR2)
+return NUMBER
+AS
+balance NUMBER;
+tax number;
+BEGIN
+    SELECT MAX(account.balance) INTO balance 
+    FROM depositor, account
+    WHERE depositor.customer_name = name and depositor.account_number = account.account_number;
+
+    IF((balance)>=750) THEN
+        tax := (0.08*balance);
+    ELSE
+        tax := 0;
+    END IF;
+
+    RETURN tax;
 END;
 /
 
 DECLARE
-    Name VARCHAR2(15);
+    name VARCHAR2(15);
 BEGIN
+    name := '& Customer_Name';
     
-    CustomerStatus('Hayes');
+    DBMS_OUTPUT.PUT_LINE(customer_tax(name));
 END;
 /
 
+--d--
+
+create or replace
+FUNCTION customer_category(name varchar2)
+RETURN VARCHAR2
+AS
+balance NUMBER;
+loan_ammount number;
+category VARCHAR2(10);
+
+BEGIN
+    SELECT MAX(account.balance) INTO balance 
+    FROM depositor, account
+    WHERE depositor.customer_name = name and depositor.account_number = account.account_number;
+
+    SELECT MAX(loan.amount) INTO loan_ammount 
+    FROM borrower, loan 
+    WHERE borrower.customer_name = name and borrower.loan_number = loan.loan_number;
+
+    IF((balance) > 1000 AND (loan_ammount) < 1000) THEN
+        category := 'C-A1';
+    ELSIF((balance)<500 AND (loan_ammount)>2000) THEN
+        category := 'C-C3';
+    ELSE
+        category :=' C-B1';
+    END IF;
+    RETURN category;
+END;
+/   
+
+
+DECLARE
+    name VARCHAR2(15);
+BEGIN
+    name := '& Customer_Name';
+    DBMS_OUTPUT.PUT_LINE(customer_category(name));
+END;
+/
