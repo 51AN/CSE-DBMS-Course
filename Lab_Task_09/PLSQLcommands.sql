@@ -79,7 +79,14 @@ CREATE OR REPLACE
 PROCEDURE FIND_PRIME ( NUM IN NUMBER , VERDICT OUT VARCHAR2 )
 AS
 BEGIN
-    
+    VERDICT := 'Number is prime';
+    FOR i IN 2 .. (NUM/2)
+        LOOP
+            IF MOD(NUM, i) = 0 THEN
+                VERDICT := 'Number is not prime';
+                EXIT;
+            END IF;
+        END LOOP;
 
 END;
 /
