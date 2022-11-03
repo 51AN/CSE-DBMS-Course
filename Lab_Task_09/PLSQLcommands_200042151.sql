@@ -75,8 +75,8 @@ BEGIN
     END CASE;
 END;
 /
---f--
 
+--f--
 CREATE OR REPLACE
 PROCEDURE FIND_PRIME ( NUM IN NUMBER , VERDICT OUT VARCHAR2 )
 AS
@@ -103,10 +103,6 @@ BEGIN
 
 END;
 /
-
-
-
-
 
 
 
@@ -173,9 +169,7 @@ BEGIN
 END;
 /
 
-
 --c--
-
 create or replace
 FUNCTION customer_tax(name VARCHAR2)
 return NUMBER
@@ -207,7 +201,6 @@ END;
 /
 
 --d--
-
 create or replace
 FUNCTION customer_category(name varchar2)
 RETURN VARCHAR2

@@ -20,3 +20,14 @@ END ;
 select *
 from BRANCH
 ORDER BY BRANCH.ASSETS DESC;
+
+
+DECLARE
+    name1 VARCHAR2(20);
+    name2 VARCHAR2(20);
+BEGIN
+    name1 := '& Name_1';
+    name2 := '& Name_2';
+    DBMS_OUTPUT.PUT_LINE(name1 || ' + ' || name2 /*IN VARCHAR2*/);
+END;
+/
