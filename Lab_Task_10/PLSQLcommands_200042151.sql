@@ -28,6 +28,13 @@ END ;
 
 --> 2 <--
 
+SELECT T.TIME_SLOT_ID, T.DAY, T.start_hr, T.start_min ,T.end_hr, T.end_min
+FROM INSTRUCTOR NATURAL JOIN TEACHES NATURAL JOIN SECTION NATURAL JOIN TIME_SLOT T;
+
+
+
+SELECT T.TIME_SLOT_ID, T.DAY, T.start_hr, T.start_min ,T.end_hr, T.end_min
+FROM INSTRUCTOR, TEACHES, SECTION,TIME_SLOT T;
 
 --> 3 <--
 
