@@ -33,7 +33,7 @@ public class Task03 {
                     System.out.print(" deposited to");
                 else
                     System.out.print(" taken out from ");
-                System.out.println(" account " + account);
+                System.out.println("account " + account);
 
 
 
